@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AsgardPlay — Tutoriais de Instalação</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f0f0f;
+            --surface: #1a1a1a;
+            --border: #2a2a2a;
+            --accent: #7c3aed;
+            --accent-end: #4f46e5;
+            --text: #f5f5f5;
+            --text-secondary: #a1a1aa;
+            --radius: 14px;
+            --radius-sm: 10px;
+            --transition: 200ms ease;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100dvh;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Header ── */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 24px 16px 8px;
+            cursor: pointer;
+        }
+
+        .header-logo {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-end));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-logo svg {
+            width: 20px;
+            height: 20px;
+            fill: #fff;
+        }
+
+        .header-title {
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--accent-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── Container ── */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        /* ── Fade animation ── */
+        .page-content {
+            animation: fadeIn var(--transition) ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ── Section title ── */
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            text-align: center;
+            margin: 16px 0 24px;
+        }
+
+        .section-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: -18px;
+            margin-bottom: 24px;
+        }
+
+        /* ── Card Grid ── */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        /* ── Card ── */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text);
+            cursor: pointer;
+            transition: transform var(--transition), border-color var(--transition);
+            min-height: 56px;
+        }
+
+        .card-icon {
+            font-size: 36px;
+            line-height: 1;
+        }
+
+        .card-label {
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .card-sublabel {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: -4px;
+        }
+
+        /* ── APK Download Section ── */
+        .apk-section {
+            margin-top: 12px;
+            padding: 20px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .apk-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 14px;
+            text-align: center;
+        }
+
+        .apk-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .apk-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 16px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-end));
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: opacity var(--transition);
+        }
+
+        .apk-btn:active {
+            opacity: .85;
+        }
+
+        .apk-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: #fff;
+            flex-shrink: 0;
+        }
+
+        /* ── Video page ── */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .video-placeholder svg {
+            width: 48px;
+            height: 48px;
+            fill: var(--text-secondary);
+            opacity: .5;
+        }
+
+        /* ── Buttons ── */
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background var(--transition), opacity var(--transition);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-end));
+            color: #fff;
+        }
+
+        .btn-primary.copied {
+            background: #16a34a;
+        }
+
+        .btn-primary:active {
+            opacity: .85;
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+
+        /* ── Back link ── */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            padding: 8px 0;
+            transition: color var(--transition);
+        }
+
+        .back-link svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* ── Footer ── */
+        .footer {
+            text-align: center;
+            padding: 32px 16px 24px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        /* ── Desktop ── */
+        @media (min-width: 640px) {
+            .container {
+                padding: 24px;
+            }
+
+            .card-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 18px;
+            }
+
+            .card:hover {
+                transform: scale(1.02);
+                border-color: var(--accent);
+            }
+
+            .back-link:hover {
+                color: var(--text);
+            }
+
+            .header-title {
+                font-size: 26px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .btn {
+                max-width: 360px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .apk-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .apk-btn {
+                flex: 1;
+                max-width: 260px;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .card-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header" onclick="navigateTo('')">
+        <div class="header-logo">
+            <svg viewBox="0 0 24 24">
+                <polygon points="9.5,7 9.5,17 18,12" />
+            </svg>
+        </div>
+        <span class="header-title">AsgardPlay</span>
+    </div>
+
+    <div class="container" id="app"></div>
+
+    <div class="footer">© 2026 AsgardPlay — Todos os direitos reservados</div>
+
+    <script>
+        /* ══════════════════════════════════════════
+           DADOS — dispositivos, apps e vídeos
+        ══════════════════════════════════════════ */
+        const dispositivos = {
+            "android-tv": {
+                label: "TV Android",
+                sublabel: "TCL · Philco · Toshiba · AOC · TVBox · FireStick e similares",
+                icon: "📺",
+                apps: {
+                    "assistplus": { label: "AssistPlus", video: "public/videos/android-tv/assistplus.mp4" },
+                    "playsim": { label: "PlaySim", video: "public/videos/android-tv/playsim.mp4" },
+                    "vizzion-play": { label: "Vizzion Play", video: "public/videos/android-tv/vizzion-play.mp4" }
+                }
+            },
+            "celular-android": {
+                label: "Celular Android",
+                icon: "📱",
+                apksOnly: true,
+                apps: {
+                    "assistplus": { label: "AssistPlus", video: "public/videos/fire-stick/assistplus.mp4" },
+                    "playsim": { label: "PlaySim", video: "public/videos/fire-stick/playsim.mp4" },
+                    "vizzion-play": { label: "Vizzion Play", video: "public/videos/fire-stick/vizzion-play.mp4" }
+                },
+                apks: [
+                    { label: "AsgardPlay 4K", file: "public/apk/celular-android/AsgardPlay4K.apk" },
+                    { label: "AsgardPlay IBO", file: "public/apk/celular-android/AsgardPlayIBO.apk" }
+                ]
+            },
+            "celular-ios": {
+                label: "Celular iOS",
+                icon: "📱",
+                apps: {
+                    "vizzion-play": { label: "Vizzion Play", video: "public/videos/celular-ios/vizzion-play.mp4" }
+                }
+            },
+            "computador-windows": {
+                label: "Computador Windows",
+                icon: "💻",
+                apps: {
+                    "vizzion-play": { label: "Vizzion Play", video: "public/videos/computador-windows/vizzion-play.mp4" }
+                }
+            },
+            "fire-stick": {
+                label: "Fire Stick",
+                sublabel: "Amazon Fire TV Stick e similares",
+                icon: "🔥",
+                apps: {
+                    "assistplus": { label: "AssistPlus", video: "public/videos/fire-stick/assistplus.mp4" },
+                    "playsim": { label: "PlaySim", video: "public/videos/fire-stick/playsim.mp4" },
+                    "vizzion-play": { label: "Vizzion Play", video: "public/videos/fire-stick/vizzion-play.mp4" }
+                }
+            },
+            "lg": {
+                label: "TV LG",
+                icon: "📺",
+                apps: {
+                    "assistplus": { label: "AssistPlus", video: "public/videos/lg/assistplus.mp4" },
+                    "playsim": { label: "PlaySim", video: "public/videos/lg/playsim.mp4" },
+                    "vizzion-play": { label: "Vizzion Play", video: "public/videos/lg/vizzion-play.mp4" }
+                }
+            },
+            "roku": {
+                label: "Roku TV",
+                icon: "📺",
+                apps: {
+                    "assistplus": { label: "AssistPlus", video: "public/videos/roku/assistplus.mp4" },
+                    "playsim": { label: "PlaySim", video: "public/videos/roku/playsim.mp4" },
+                    "vizzion-play": { label: "Vizzion Play", video: "public/videos/roku/vizzion-play.mp4" }
+                }
+            },
+            "samsung": {
+                label: "TV Samsung",
+                icon: "📺",
+                apps: {
+                    "assistplus": { label: "AssistPlus", video: "public/videos/samsung/assistplus.mp4" },
+                    "playsim": { label: "PlaySim", video: "public/videos/samsung/playsim.mp4" },
+                    "vizzion-play": { label: "Vizzion Play", video: "public/videos/samsung/vizzion-play.mp4" }
+                }
+            }
+        };
+
+        /* ══════════════════════════════════════════
+           ÍCONES SVG reutilizáveis
+        ══════════════════════════════════════════ */
+        const icons = {
+            back: '<svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>',
+            copy: '<svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>',
+            check: '<svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>',
+            play: '<svg viewBox="0 0 24 24"><polygon points="9.5,7 9.5,17 18,12"/></svg>',
+            download: '<svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>'
+        };
+
+        /* ══════════════════════════════════════════
+           ROTEADOR
+        ══════════════════════════════════════════ */
+        function getRoute() {
+            const hash = location.hash.replace(/^#\/?/, '');
+            const parts = hash.split('/').filter(Boolean);
+            return parts;
+        }
+
+        function navigateTo(path) {
+            location.hash = '#/' + path;
+        }
+
+        function router() {
+            const parts = getRoute();
+            const app = document.getElementById('app');
+
+            if (parts.length === 0) {
+                renderHome(app);
+            } else if (parts.length === 1 && dispositivos[parts[0]]) {
+                renderDevice(app, parts[0]);
+            } else if (parts.length === 2 && dispositivos[parts[0]] && dispositivos[parts[0]].apps[parts[1]]) {
+                renderVideo(app, parts[0], parts[1]);
+            } else {
+                renderHome(app);
+            }
+        }
+
+        /* ══════════════════════════════════════════
+           RENDER — Home
+        ══════════════════════════════════════════ */
+        function renderHome(container) {
+            let html = '<div class="page-content">';
+            html += '<h1 class="section-title">Tutoriais de Instalação</h1>';
+            html += '<p class="section-subtitle">Selecione o seu dispositivo</p>';
+            html += '<div class="card-grid">';
+
+            for (const [slug, device] of Object.entries(dispositivos)) {
+                html += `
+          <div class="card" onclick="navigateTo('${slug}')">
+            <span class="card-icon">${device.icon}</span>
+            <span class="card-label">${device.label}</span>
+            ${device.sublabel ? `<span class="card-sublabel">${device.sublabel}</span>` : ''}
+          </div>`;
+            }
+
+            html += '</div></div>';
+            container.innerHTML = html;
+        }
+
+        /* ══════════════════════════════════════════
+           RENDER — Página do Dispositivo
+        ══════════════════════════════════════════ */
+        function renderDevice(container, deviceSlug) {
+            const device = dispositivos[deviceSlug];
+            let html = '<div class="page-content">';
+            html += `<a class="back-link" href="#/">${icons.back} Voltar</a>`;
+            html += `<h1 class="section-title">Tutoriais para ${device.label}</h1>`;
+            if (device.sublabel) {
+                html += `<p class="section-subtitle">${device.sublabel}</p>`;
+            }
+
+            if (!device.apksOnly) {
+                html += '<div class="card-grid">';
+                for (const [appSlug, appData] of Object.entries(device.apps)) {
+                    html += `
+          <div class="card" onclick="navigateTo('${deviceSlug}/${appSlug}')">
+            <span class="card-icon">${icons.play}</span>
+            <span class="card-label">${appData.label}</span>
+          </div>`;
+                }
+                html += '</div>';
+            }
+
+            // APK download section
+            if (device.apks && device.apks.length > 0) {
+                html += '<div class="apk-section">';
+                html += '<h3>📥 Baixar aplicativo (APK)</h3>';
+                html += '<div class="apk-buttons">';
+                for (const apk of device.apks) {
+                    html += `<a class="apk-btn" href="${apk.file}" download>${icons.download} ${apk.label}</a>`;
+                }
+                html += '</div></div>';
+            }
+
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        /* ══════════════════════════════════════════
+           RENDER — Página do Vídeo
+        ══════════════════════════════════════════ */
+        function renderVideo(container, deviceSlug, appSlug) {
+            const device = dispositivos[deviceSlug];
+            const appData = device.apps[appSlug];
+            const videoSrc = appData.video;
+
+            let html = '<div class="page-content">';
+            html += `<a class="back-link" href="#/${deviceSlug}">${icons.back} Voltar para ${device.label}</a>`;
+            html += `<h1 class="section-title">Como instalar ${appData.label} na ${device.label}</h1>`;
+
+            // Video player
+            html += '<div class="video-wrapper">';
+            html += `<video id="tutorial-video" controls preload="metadata" playsinline>
+        <source src="${videoSrc}" type="video/mp4">
+      </video>`;
+            html += '</div>';
+
+            // Copy link button
+            html += `<button class="btn btn-primary" id="copy-btn" onclick="copyLink()">
+        ${icons.copy} <span id="copy-text">Copiar link do tutorial</span>
+      </button>`;
+
+            html += '</div>';
+            container.innerHTML = html;
+
+            // Check if video loads
+            const video = document.getElementById('tutorial-video');
+            video.addEventListener('error', function () {
+                const wrapper = video.closest('.video-wrapper');
+                wrapper.innerHTML = `<div class="video-placeholder">
+          ${icons.play}
+          <span>Tutorial em breve</span>
+        </div>`;
+            });
+        }
+
+        /* ══════════════════════════════════════════
+           COPIAR LINK
+        ══════════════════════════════════════════ */
+        function copyLink() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(function () {
+                const btn = document.getElementById('copy-btn');
+                const text = document.getElementById('copy-text');
+                btn.classList.add('copied');
+                text.textContent = 'Link copiado!';
+                btn.innerHTML = icons.check + ' <span id="copy-text">Link copiado!</span>';
+                setTimeout(function () {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = icons.copy + ' <span id="copy-text">Copiar link do tutorial</span>';
+                }, 2000);
+            });
+        }
+
+        /* ══════════════════════════════════════════
+           INICIALIZAR
+        ══════════════════════════════════════════ */
+        window.addEventListener('hashchange', router);
+        window.addEventListener('DOMContentLoaded', function () {
+            if (!location.hash) location.hash = '#/';
+            router();
+        });
+    </script>
+</body>
+
+</html>
