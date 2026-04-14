@@ -396,7 +396,7 @@
                 apps: {
                     "assistplus": { label: "AssistPlus", video: "public/videos/android-tv/assistplus.mp4" },
                     "playsim": { label: "PlaySim", video: "public/videos/android-tv/playsim.mp4" },
-                    "vizzion-play": { label: "Vizzion Play", video: "public/videos/android-tv/vizzion-play.mp4" }
+                    "vizzion-play": { label: "Vizzion Play", video: "public/videos/android-tv/vizzion-play.png" }
                 }
             },
             "celular-android": {
@@ -459,7 +459,7 @@
                 label: "TV Samsung",
                 icon: "📺",
                 apps: {
-                    "assistplus": { label: "AssistPlus", video: "public/videos/samsung/assistplus.mp4" },
+                    "assistplus": { label: "AssistPlus", video: "public/videos/samsung/assistplus.png" },
                     "playsim": { label: "PlaySim", video: "public/videos/samsung/playsim.mp4" },
                     "vizzion-play": { label: "Vizzion Play", video: "public/videos/samsung/vizzion-play.mp4" }
                 }
@@ -578,11 +578,16 @@
             html += `<a class="back-link" href="#/${deviceSlug}">${icons.back} Voltar para ${device.label}</a>`;
             html += `<h1 class="section-title">Como instalar ${appData.label} na ${device.label}</h1>`;
 
-            // Video player
+            // Video player or image tutorial
+            const isImage = /\.(png|jpg|jpeg|webp|gif)$/i.test(videoSrc);
             html += '<div class="video-wrapper">';
-            html += `<video id="tutorial-video" controls preload="metadata" playsinline>
+            if (isImage) {
+                html += `<img id="tutorial-image" src="${videoSrc}" alt="Tutorial ${appData.label}" style="width:100%;height:100%;object-fit:contain;display:block;">`;
+            } else {
+                html += `<video id="tutorial-video" controls preload="metadata" playsinline>
         <source src="${videoSrc}" type="video/mp4">
       </video>`;
+            }
             html += '</div>';
 
             // Copy link button
@@ -593,15 +598,27 @@
             html += '</div>';
             container.innerHTML = html;
 
-            // Check if video loads
+            // Check if video/image loads
             const video = document.getElementById('tutorial-video');
-            video.addEventListener('error', function () {
-                const wrapper = video.closest('.video-wrapper');
-                wrapper.innerHTML = `<div class="video-placeholder">
+            if (video) {
+                video.addEventListener('error', function () {
+                    const wrapper = video.closest('.video-wrapper');
+                    wrapper.innerHTML = `<div class="video-placeholder">
           ${icons.play}
           <span>Tutorial em breve</span>
         </div>`;
-            });
+                });
+            }
+            const img = document.getElementById('tutorial-image');
+            if (img) {
+                img.addEventListener('error', function () {
+                    const wrapper = img.closest('.video-wrapper');
+                    wrapper.innerHTML = `<div class="video-placeholder">
+          ${icons.play}
+          <span>Tutorial em breve</span>
+        </div>`;
+                });
+            }
         }
 
         /* ══════════════════════════════════════════

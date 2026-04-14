@@ -1,1 +1,0 @@
-Os APKs devem ter um botão de download par os clientes baixarem diretamente pelo site se quiserem acessar o sistema pelo celular Android.
